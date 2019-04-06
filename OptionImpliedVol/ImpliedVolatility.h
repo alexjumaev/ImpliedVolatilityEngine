@@ -53,7 +53,7 @@ struct ImpliedVolatility {
 		underType = (tradeDetails[1] == "Future" ? UnderlyingType::Future : UnderlyingType::Stock);
 		currentPrice = lexical_cast<double>(tradeDetails[2]);
 		riskFreeRate = lexical_cast<double>(tradeDetails[3]);
-		timeMat = lexical_cast<double>(tradeDetails[4]);
+		timeMat = lexical_cast<double>(tradeDetails[4]) / 365.0;
 		strike = lexical_cast<double>(tradeDetails[5]);
 		callPut = (tradeDetails[6] == "Call" ? CallPut::Call : CallPut::Put);
 		modType = (tradeDetails[7] == "Bachelier" ? ModelType::Bachelier: ModelType::Black);

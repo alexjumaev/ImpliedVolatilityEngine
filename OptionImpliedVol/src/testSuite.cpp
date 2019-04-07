@@ -19,20 +19,20 @@
 //
 //void test_NormalCDF()
 //{
-//	BOOST_TEST_MESSAGE("Statistical tests...");
+//	BOOST_TEST_MESSAGE("Statistical tests...check CND and dN");
 //	double half = 0.5;
 //	BOOST_CHECK_SMALL(ImpliedVolatility::CND(0) - half, 1e-8);
 //}
 //
 //void test_openFile() {
-//	BOOST_TEST_MESSAGE("Open File test...");
+//	BOOST_TEST_MESSAGE("Open File test...confirm total trades count");
 //	//Check to see if the file reader returns the correct row count inc Header
 //	ImpliedVolExtractor VolBox("inputData/input.csv", "");
 //	BOOST_CHECK_SMALL(VolBox.getRowCount() - 65537 , 0);
 //}
 //
 //void test_BrentSolver() {
-//	BOOST_TEST_MESSAGE("Brent solver test...");
+//	BOOST_TEST_MESSAGE("Brent solver test...find root of (x+1)(2x-1)");
 //	// Factors (x+1)(2x-1) so we should find root of +1/2 between interval [0.0001,2]
 //	std::function<double(double)> f_ = [](double x) {return (2 * x*x + x - 1);};
 //	BrentSolver solver(f_, 0.0001, 2, 1e-9, 100);
@@ -41,7 +41,7 @@
 //}
 //
 //void test_OptionPricing() {
-//	BOOST_TEST_MESSAGE("Option Pricing tests...");
+//	BOOST_TEST_MESSAGE("Option Pricing tests...confirm implied vol from target vol of 20%");
 //	// OptionPricer : Given i price a option with a vol of 20% i should back out the same vol given the option price
 //	double targetVol = 0.2;
 //	ImpliedVolatility VanillaCallOption(UnderlyingType::Stock, ModelType::Black, CallPut::Call, 0, 100, 100, 0.05, 1.0);

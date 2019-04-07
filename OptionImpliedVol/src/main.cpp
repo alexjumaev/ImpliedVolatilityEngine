@@ -23,8 +23,9 @@ int main() {
 	VolBox.extractImpliedVols();
 	VolBox.writeImpliedVolsToFile();
 
-	printf("Time taken: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
-	std::cout << "Main Application Finished, see outputData Folder within project solution folder to see results." << std::endl;
+	printf("Program finshed after: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
+	std::cout << "Main Application Finished, see: "<< std::endl << outputDir << std::endl;
+	std::cout << "for results." << std::endl;
 	
 	return 0;
 }

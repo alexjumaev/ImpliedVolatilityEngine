@@ -11,40 +11,62 @@ ImpliedVolExtractor::ImpliedVolExtractor(const std::string inputFilename_, const
 
 	std::string str;
 	std::ifstream file(inputFilename);
-	while (getline(file,str))
-		rowCnt++;
+	if (file.is_open())
+	{
+		while (getline(file,str)) rowCnt++;
+		file.close();
+	}
+	else
+	{
+		throw "File " + inputFilename + " cannot be found!";
+	}
 };
 
 void ImpliedVolExtractor::extractImpliedVols() {
-	std::vector<std::string> result;
+	std::vector<std::string> tokens;
 	std::string str;
 	std::ifstream file(inputFilename);
-	getline(file, str);
-
-	while (getline(file, str))
+	getline(file, str);	// Pass Headers
+	if (file.is_open()) {
+		while (getline(file, str))
+		{
+			boost::split(tokens, str, boost::is_any_of(","), boost::token_compress_on);
+			ImpliedVolatility option(tokens);
+			try {
+				option.solveImpliedVol();
+			}
+			catch(...){
+				std::cout << "Brent unable to solve for trade ID: " << tokens[0];
+			}
+			finalTradeOutput.push_back(OutputObj(tokens[0], option.getImpliedVol()));
+		}
+	}
+	else
 	{
-		boost::split(result, str, boost::is_any_of(","), boost::token_compress_on);
-		ImpliedVolatility option(result);
-		option.solveImpliedVol();
-		finalTradeOutput.push_back(OutputObj(result[0], option.getImpliedVol()));
-		//std::cout << "ID," << result[0] << ",impVol, " << option.getImpliedVol() << std::endl;
+		throw "File " + inputFilename + " cannot be found!";
 	}
 }
 
 void ImpliedVolExtractor::writeImpliedVolsToFile() {
-	std::ofstream myfile;
-	myfile.open(outputFilename);
-	for (OutputObj& trade : finalTradeOutput)
+	std::ofstream outputfile;
+	outputfile.open(outputFilename);
+	if (outputfile.is_open())
 	{
-		if (trade.impliedVol!=0)
+		for (OutputObj& trade : finalTradeOutput)
 		{
-			myfile <<"Trade ID," << trade.id << "," << trade.impliedVol << std::endl;
+			if (trade.impliedVol != 0)
+			{
+				outputfile << "Trade ID," << trade.id << "," << trade.impliedVol << std::endl;
+			}
+			else {
+				outputfile << "Trade ID," << trade.id << ",nan" << std::endl;
+			}
 		}
-		else {
-			myfile << "Trade ID," << trade.id << ",nan" << std::endl;
-		}
+		outputfile.close();
 	}
-	myfile.close();
+	else {
+		throw "File " + outputFilename + " cannot be found!";
+	}
 }
 
 

@@ -7,10 +7,10 @@
 class BrentSolver
 {
 	std::function<double(double)> f;
-	int maxIterations = 150;
-	double tolerance = 1e-9;
+	int maxIterations = 75;
+	double tolerance = 1e-8;
 	double lowerBound = 1e-4;
-	double upperBound = 10;
+	double upperBound = 5;
 public:
 
 	explicit BrentSolver(const std::function<double(double)>& f_, const double& lowerBound_, const double& upperBound_,

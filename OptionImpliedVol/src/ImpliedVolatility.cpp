@@ -19,10 +19,11 @@ double ImpliedVolatility::priceOption(double vol)
 	{
 		double d = (currentPrice - strike) / (vol*sqrt(timeMat));
 		return df *(callPut*(currentPrice - strike)*CND(callPut*d) + vol*sqrt(timeMat)*dN(d));
-	}else
+	}
+	else
 	{
-		//GO_FAIL("Cannot recognise the trade model type.");
-		return 0;
+		throw "Model could not be recognised!";
+		//return 0;
 	}
 }
 

@@ -2,7 +2,11 @@
 #include "../boostLibrary/boost/algorithm/string/split.hpp"
 #include <fstream>
 #include <iostream>
+#include <iomanip> 
 #include "ImpliedVolExtractor.hpp"
+
+const std::vector<std::string> headers = { "ID", "Spot","Strike","Risk - Free Rate","Years To Expiry","Option Type","Model Type","impliedVol","Market Price"};
+
 
 ImpliedVolExtractor::ImpliedVolExtractor(const std::string inputFilename_, const std::string outputFilename_)
 {
@@ -38,7 +42,18 @@ void ImpliedVolExtractor::extractImpliedVols() {
 			catch(...){
 				std::cout << "Brent unable to solve for trade ID: " << tokens[0];
 			}
-			finalTradeOutput.push_back(OutputObj(tokens[0], option.getImpliedVol()));
+			
+			finalTradeOutput.push_back(OutputObj(
+				option.getTradeID(), 
+				option.getSpot(), 
+				option.getStrike(), 
+				option.getriskFreeRate(), 
+				option.getTimToMat(), 
+				option.getOptionType(),
+				option.getModelType(),
+				option.getOptionPrice(),
+				option.getImpliedVol())
+			);
 		}
 	}
 	else
@@ -50,17 +65,16 @@ void ImpliedVolExtractor::extractImpliedVols() {
 void ImpliedVolExtractor::writeImpliedVolsToFile() {
 	std::ofstream outputfile;
 	outputfile.open(outputFilename);
-	outputfile << "Trade ID,impliedVol" << std::endl;
-		for (OutputObj& trade : finalTradeOutput)
-		{
-			if (trade.impliedVol != 0)
-			{
-				outputfile << trade.id << "," << trade.impliedVol << std::endl;
-			}
-			else {
-				outputfile << trade.id << ",nan" << std::endl;
-			}
-		}
+	outputfile.precision(12);
+	for (std::string str : headers) { outputfile << str << ","; } outputfile << std::endl;
+
+	for (OutputObj& trade : finalTradeOutput)
+	{
+		outputfile << trade.id << "," << trade.Spot << "," << trade.Strike << "," << trade.rate << ",";
+		outputfile << trade.timMat << "," << trade.OptionType << "," << trade.ModelType << ",";
+		(trade.impliedVol != 0 ? outputfile << trade.impliedVol : outputfile << "nan") << ",";
+		outputfile << trade.MarketPrice << std::endl;
+	}
 	outputfile.close();
 }
 

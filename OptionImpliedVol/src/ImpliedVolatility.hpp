@@ -28,6 +28,7 @@ enum CallPut {
 };
 
 struct ImpliedVolatility {
+	int TradeID{0};
 	UnderlyingType underType;
 	ModelType modType;
 	CallPut callPut;
@@ -50,6 +51,7 @@ struct ImpliedVolatility {
 
 	explicit ImpliedVolatility(std::vector<std::string>& tradeDetails)
 	{
+		TradeID = lexical_cast<int>(tradeDetails[0]);
 		underType = (tradeDetails[1] == "Future" ? UnderlyingType::Future : UnderlyingType::Stock);
 		currentPrice = lexical_cast<double>(tradeDetails[2]);
 		riskFreeRate = lexical_cast<double>(tradeDetails[3]);
@@ -70,8 +72,15 @@ struct ImpliedVolatility {
 	
 	void solveImpliedVol() {impliedVol = solver_->solve();}
 
-	inline double getImpliedVol() { return impliedVol;}
-	inline double getOptionPrice() { return optPrice; }
+	inline int getTradeID() const { return TradeID; }
+	inline double getImpliedVol() const { return impliedVol;}
+	inline double getOptionPrice() const { return optPrice; }
+	inline double getTimToMat()const { return timeMat; }
+	inline double getStrike()const { return strike; }
+	inline double getSpot()const { return currentPrice; }
+	inline double getriskFreeRate()const { return riskFreeRate; }
+	inline std::string getOptionType() const { return (callPut == 1 ? "Call" : "Put"); }
+	inline std::string getModelType() const { return (modType==0 ? "BlackScholes" : "Bachelier"); }
 
 	static double dN(double x);
 	static double CND(double d);

@@ -3,9 +3,21 @@
 #include "ImpliedVolatility.hpp"
 
 struct OutputObj {
-	std::string id;
+	int id;
+	double Spot;
+	double Strike;
+	double rate;
+	double timMat;
+	double MarketPrice;
 	double impliedVol;
-	OutputObj(const std::string& id_, const double& impliedVol_) :id(id_), impliedVol(impliedVol_) {}
+	std::string OptionType;
+	std::string ModelType;
+
+	OutputObj(const int& id_, const double& Spot_, const double& Strike_, const double& rate_, const double& timMat_,
+		const std::string& OptionType_, const std::string& ModelType_, const double& MarketPrice_, const double& impliedVol_)
+		:
+		id(id_), Spot(Spot_) , Strike(Strike_) , rate(rate_),timMat(timMat_), OptionType(OptionType_) , ModelType(ModelType_), 
+		MarketPrice(MarketPrice_),  impliedVol(impliedVol_) {}
 };
 
 class ImpliedVolExtractor

@@ -50,14 +50,15 @@ void ImpliedVolExtractor::extractImpliedVols() {
 void ImpliedVolExtractor::writeImpliedVolsToFile() {
 	std::ofstream outputfile;
 	outputfile.open(outputFilename);
+	outputfile << "Trade ID,impliedVol" << std::endl;
 		for (OutputObj& trade : finalTradeOutput)
 		{
 			if (trade.impliedVol != 0)
 			{
-				outputfile << "Trade ID," << trade.id << "," << trade.impliedVol << std::endl;
+				outputfile << trade.id << "," << trade.impliedVol << std::endl;
 			}
 			else {
-				outputfile << "Trade ID," << trade.id << ",nan" << std::endl;
+				outputfile << trade.id << ",nan" << std::endl;
 			}
 		}
 	outputfile.close();

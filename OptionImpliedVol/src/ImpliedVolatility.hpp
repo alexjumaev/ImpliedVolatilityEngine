@@ -1,9 +1,10 @@
 ﻿#ifndef ImpliedVolatility_H
 #define ImpliedVolatility_H
-#include "../boostLibrary/boost/lexical_cast.hpp"
-#include "../boostLibrary/boost/bind.hpp"
-#include "../boostLibrary/boost/functional.hpp"
+#include "boost/lexical_cast.hpp"
+#include "boost/bind.hpp"
+#include "boost/functional.hpp"
 #include <functional>
+#include <vector>
 #include "BrentSolver.hpp"
 using boost::lexical_cast;
 

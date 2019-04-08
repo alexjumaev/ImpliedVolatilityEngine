@@ -1,5 +1,5 @@
-﻿#include "../boostLibrary/boost/algorithm/string/classification.hpp"
-#include "../boostLibrary/boost/algorithm/string/split.hpp"
+﻿#include "boost/algorithm/string/classification.hpp"
+#include "boost/algorithm/string/split.hpp"
 #include <fstream>
 #include <iostream>
 #include <iomanip> 

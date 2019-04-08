@@ -1,7 +1,7 @@
 ﻿#include <cmath>
 #include <random>
 #include "ImpliedVolatility.hpp"
-#include "../boostLibrary/boost/math/constants/constants.hpp"
+#include "boost/math/constants/constants.hpp"
 
 
 double ImpliedVolatility::priceOption(double vol)

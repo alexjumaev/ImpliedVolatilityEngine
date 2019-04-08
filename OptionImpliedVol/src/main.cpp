@@ -1,4 +1,4 @@
-﻿#include "../boostLibrary/boost/math/constants/constants.hpp"
+﻿#include "boost/math/constants/constants.hpp"
 #include <iostream>
 #include <functional>
 #include <vector>
@@ -6,7 +6,6 @@
 #include <time.h>
 #include "ImpliedVolExtractor.hpp"
 #include "ImpliedVolatility.hpp"
-#include <stdlib.h> 
 
 /*  This is the main program. 
 	To run unit tests comment this main.cpp file

@@ -13,14 +13,15 @@
 	tests.
 */
 int main() {
+
 	std::cout << "Main Application Started: Running through trades...and calculating implied vol..." << std::endl;
 	std::string projectDir = MYMACRO;
 	clock_t tStart = clock();
 	std::string inputDir = projectDir + "inputData\\input.csv";
 	std::string outputDir = projectDir + "outputData\\output.csv";
-	ImpliedVolExtractor VolBox(inputDir, outputDir);
-	VolBox.extractImpliedVols();
-	VolBox.writeImpliedVolsToFile();
+	ImpliedVolExtractor volBox(inputDir, outputDir);
+	volBox.extractImpliedVols();
+	volBox.writeImpliedVolsToFile();
 
 	printf("Program finshed after: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 	std::cout << "Main Application Finished, see: "<< std::endl << outputDir << std::endl;

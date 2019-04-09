@@ -5,7 +5,7 @@
 #include <iomanip> 
 #include "ImpliedVolExtractor.hpp"
 
-const std::vector<std::string> headers = { "ID", "Spot","Strike","Risk - Free Rate","Years To Expiry","Option Type","Model Type","impliedVol","Market Price"};
+const std::vector<std::string> headers = { "ID", "Spot","Strike","Risk-Free Rate","Years To Expiry","Option Type","Model Type","Implied Volatility","Market Price"};
 
 
 ImpliedVolExtractor::ImpliedVolExtractor(const std::string inputFilename_, const std::string outputFilename_)
@@ -70,10 +70,10 @@ void ImpliedVolExtractor::writeImpliedVolsToFile() {
 
 	for (OutputObj& trade : finalTradeOutput)
 	{
-		outputfile << trade.id << "," << trade.Spot << "," << trade.Strike << "," << trade.rate << ",";
-		outputfile << trade.timMat << "," << trade.OptionType << "," << trade.ModelType << ",";
+		outputfile << trade.id << "," << trade.spot << "," << trade.strike << "," << trade.rate << ",";
+		outputfile << trade.timMat << "," << trade.optionType << "," << trade.modelType << ",";
 		(trade.impliedVol != 0 ? outputfile << trade.impliedVol : outputfile << "nan") << ",";
-		outputfile << trade.MarketPrice << std::endl;
+		outputfile << trade.marketPrice << std::endl;
 	}
 	outputfile.close();
 }

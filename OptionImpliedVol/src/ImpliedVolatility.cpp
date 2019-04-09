@@ -23,7 +23,6 @@ double ImpliedVolatility::priceOption(double vol)
 	else
 	{
 		throw "Model could not be recognised!";
-		//return 0;
 	}
 }
 

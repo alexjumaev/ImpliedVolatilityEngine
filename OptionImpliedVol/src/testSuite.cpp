@@ -28,14 +28,14 @@
 //
 //void test_openFile() {
 //	BOOST_TEST_MESSAGE("Open File test...confirm total trades count");
-//	//Check to see if the file reader returns the correct row count inc Header
-//	ImpliedVolExtractor VolBox("inputData/input.csv", "");
-//	BOOST_CHECK_SMALL(VolBox.getRowCount() - 65537 , 0);
+//	Check to see if the file reader returns the correct row count inc Header
+//	ImpliedVolExtractor volBox("inputData/input.csv", "");
+//	BOOST_CHECK_SMALL(volBox.getRowCount() - 65537 , 0);
 //}
 //
 //void test_BrentSolver() {
 //	BOOST_TEST_MESSAGE("Brent solver test...find root of (x+1)(2x-1)");
-//	// Factors (x+1)(2x-1) so we should find root of +1/2 between interval [0.0001,2]
+//	 Factors (x+1)(2x-1) so we should find root of +1/2 between interval [0.0001,2]
 //	std::function<double(double)> f_ = [](double x) {return (2 * x*x + x - 1);};
 //	BrentSolver solver(f_, 0.0001, 2, 1e-9, 100);
 //	double val = solver.solve();
@@ -44,28 +44,28 @@
 //
 //void test_OptionPricing() {
 //	BOOST_TEST_MESSAGE("Option Pricing tests...confirm implied vol from target vol of 20%");
-//	// OptionPricer : Given i price a option with a vol of 20% i should back out the same vol given the option price
+//	 OptionPricer : Given i price a option with a vol of 20% i should back out the same vol given the option price
 //	double targetVol = 0.2;
-//	ImpliedVolatility VanillaCallOption(UnderlyingType::Stock, ModelType::Black, CallPut::Call, 0, 100, 100, 0.05, 1.0);
-//	double optionPrice = VanillaCallOption.priceOption(targetVol);
+//	ImpliedVolatility vanillaCallOption(UnderlyingType::Stock, ModelType::Black, CallPut::Call, 0, 100, 100, 0.05, 1.0);
+//	double optionPrice = vanillaCallOption.priceOption(targetVol);
 //
-//	ImpliedVolatility OptionToSolve(UnderlyingType::Stock, ModelType::Black, CallPut::Call, optionPrice, 100, 100, 0.05, 1.0);
-//	OptionToSolve.solveImpliedVol();
+//	ImpliedVolatility optionToSolve(UnderlyingType::Stock, ModelType::Black, CallPut::Call, optionPrice, 100, 100, 0.05, 1.0);
+//	optionToSolve.solveImpliedVol();
 //
-//	double impVol = OptionToSolve.getImpliedVol();
+//	double impVol = optionToSolve.getImpliedVol();
 //	BOOST_CHECK_SMALL(impVol - targetVol, 1e-8);
 //}
 //
 //void test_WhyNANOptionImpliedVols() {
-//	// OptionPricer : TRADE ID 39
+//	 OptionPricer : TRADE ID 39
 //	std::vector<double> optionPrices;
 //	double S = 0.273; double K = 0.3066; double timMat = 340.1189 / 365.0; double r = -0.0009; double mktPrice = 0.30025505;
 //	for (double p = mktPrice / 4; p < mktPrice * 4; p += 0.003) optionPrices.push_back(p);
 //	for (double& p : optionPrices) {
-//		ImpliedVolatility VanillaCallOption(UnderlyingType::Stock, ModelType::Black, CallPut::Call, p, S, K, r, timMat);
-//		VanillaCallOption.solveImpliedVol();
-//		double impVol = VanillaCallOption.getImpliedVol();
-//		//std::cout << "Option Price," << p << ",ImpVol," << impVol << std::endl;
+//		ImpliedVolatility vanillaCallOption(UnderlyingType::Stock, ModelType::Black, CallPut::Call, p, S, K, r, timMat);
+//		vanillaCallOption.solveImpliedVol();
+//		double impVol = vanillaCallOption.getImpliedVol();
+//		std::cout << "Option Price," << p << ",ImpVol," << impVol << std::endl;
 //	}
 //}
 //

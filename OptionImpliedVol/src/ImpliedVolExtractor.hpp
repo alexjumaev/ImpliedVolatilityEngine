@@ -4,20 +4,20 @@
 
 struct OutputObj {
 	int id;
-	double Spot;
-	double Strike;
+	double spot;
+	double strike;
 	double rate;
 	double timMat;
-	double MarketPrice;
+	double marketPrice;
 	double impliedVol;
-	std::string OptionType;
-	std::string ModelType;
+	std::string optionType;
+	std::string modelType;
 
-	OutputObj(const int& id_, const double& Spot_, const double& Strike_, const double& rate_, const double& timMat_,
-		const std::string& OptionType_, const std::string& ModelType_, const double& MarketPrice_, const double& impliedVol_)
+	OutputObj(const int& id_, const double& spot_, const double& strike_, const double& rate_, const double& timMat_,
+		const std::string& optionType_, const std::string& modelType_, const double& marketPrice_, const double& impliedVol_)
 		:
-		id(id_), Spot(Spot_) , Strike(Strike_) , rate(rate_),timMat(timMat_), OptionType(OptionType_) , ModelType(ModelType_), 
-		MarketPrice(MarketPrice_),  impliedVol(impliedVol_) {}
+		id(id_), spot(spot_) , strike(strike_) , rate(rate_),timMat(timMat_), optionType(optionType_) , modelType(modelType_), 
+		marketPrice(marketPrice_),  impliedVol(impliedVol_) {}
 };
 
 class ImpliedVolExtractor
@@ -29,7 +29,7 @@ class ImpliedVolExtractor
 public:
 	ImpliedVolExtractor(const std::string inputFilename_, const std::string outputFilename_);
 	~ImpliedVolExtractor() = default;
-	ImpliedVolExtractor(const ImpliedVolExtractor& Other) = delete;
+	ImpliedVolExtractor(const ImpliedVolExtractor& other) = delete;
 
 
 	void extractImpliedVols();

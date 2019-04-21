@@ -1,3 +1,3 @@
 #pragma once
 
-//Error logger
+//Error 

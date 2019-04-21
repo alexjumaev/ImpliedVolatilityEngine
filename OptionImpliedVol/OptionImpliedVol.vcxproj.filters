@@ -6,6 +6,7 @@
     <ClCompile Include="src\ImpliedVolExtractor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testSuite.cpp" />
+    <ClCompile Include="src\ErrorLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BrentSolver.hpp" />

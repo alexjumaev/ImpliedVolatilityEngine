@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BrentSolver.cpp" />
+    <ClCompile Include="src\ErrorLogger.cpp" />
     <ClCompile Include="src\ImpliedVolExtractor.cpp" />
     <ClCompile Include="src\ImpliedVolatility.cpp" />
     <ClCompile Include="src\main.cpp" />
